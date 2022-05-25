@@ -1,0 +1,21 @@
+properties:
+  collection:
+    list:
+      - aaa
+      - bbb
+      - ccc
+    set:
+      - 111
+      - 222
+      - 333
+      - 111
+    map:
+      name: zhangsan
+      sex: male
+      math: 90
+      english: 85
+
+value:
+  collection:
+    list: aaa,bbb,ccc
+    set: 111,222,333,111
