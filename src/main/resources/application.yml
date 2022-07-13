@@ -19,3 +19,8 @@ value:
   collection:
     list: aaa,bbb,ccc
     set: 111,222,333,111
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
