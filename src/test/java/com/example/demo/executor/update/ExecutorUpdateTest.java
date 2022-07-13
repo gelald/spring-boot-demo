@@ -161,4 +161,47 @@ public class ExecutorUpdateTest {
         // 销毁线程池
         executor.shutdown();
     }
+
+    @Test
+    public void test5() {
+        // 创建固定线程的线程池
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+
+        // 定义、提交查询订单的任务，并指定执行完成的回调方法
+        CompletableFuture<String> orderCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("===== 正在查询订单信息 =====");
+            try {
+                TimeUnit.MILLISECONDS.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return "***** 查询订单信息成功 *****";
+        }, executor).whenComplete((s, throwable) -> System.out.println(s));
+
+        // 定义、提交查询司机的任务，并指定执行完成的回调方法
+        CompletableFuture<String> driverCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("===== 正在查询司机信息 =====");
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return "***** 查询司机信息成功 *****";
+        }, executor).whenComplete((s, throwable) -> System.out.println(s));
+
+        // 定义、提交查询车辆的任务，并指定执行完成的回调方法
+        CompletableFuture<String> carCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("===== 正在查询车辆信息 =====");
+            try {
+                TimeUnit.MILLISECONDS.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return "***** 查询车辆信息成功 *****";
+        }, executor).whenComplete((s, throwable) -> System.out.println(s));
+
+        CompletableFuture.allOf(orderCompletableFuture, driverCompletableFuture, carCompletableFuture).join();
+        // 销毁线程池
+        executor.shutdown();
+    }
 }
