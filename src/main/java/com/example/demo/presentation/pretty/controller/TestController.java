@@ -39,6 +39,11 @@ public class TestController {
         return testDTO;
     }
 
+    @GetMapping(value = "/returnString"/*, produces = "application/json; charset=UTF-8"*/)
+    public String returnString() {
+        return "success";
+    }
+
     @Autowired
     public void setTestService(TestService prettyTestService) {
         this.testService = prettyTestService;
