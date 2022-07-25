@@ -1,7 +1,9 @@
 package com.example.demo.presentation.pretty.controller;
 
 import com.example.demo.presentation.pretty.dto.TestDTO;
+import com.example.demo.presentation.pretty.dto.ValidateGetDTO;
 import com.example.demo.presentation.pretty.service.TestService;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +43,21 @@ public class TestController {
 
     @GetMapping(value = "/returnString"/*, produces = "application/json; charset=UTF-8"*/)
     public String returnString() {
+        return "success";
+    }
+
+    @GetMapping("/test-validate-get-param")
+    public String testValidateGetParam(@RequestParam @NotBlank String userName,
+                                       @RequestParam @Length(min = 6, max = 20) String password,
+                                       @RequestParam @Email String email) {
+        System.out.printf("userName: %s, password: %s, email: %s", userName, password, email);
+        return "success";
+    }
+
+    //上面的请求参数太多，写得有点臃肿，可以优化成以下形式
+    @GetMapping("/test-validate-get-dto")
+    public String testValidateGetDTO(@Validated ValidateGetDTO validateGetDTO) {
+        System.out.println(validateGetDTO);
         return "success";
     }
 
