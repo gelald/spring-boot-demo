@@ -61,6 +61,12 @@ public class TestController {
         return "success";
     }
 
+    @GetMapping("/test-get-request-body")
+    public TestDTO testGetRequestBody(@RequestBody TestDTO testDTO) {
+        System.out.println("获取请求体数据: " + testDTO);
+        return testDTO;
+    }
+
     @Autowired
     public void setTestService(TestService prettyTestService) {
         this.testService = prettyTestService;
