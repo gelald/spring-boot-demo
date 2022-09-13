@@ -2,19 +2,21 @@ package com.example.demo.controller.pretty.service;
 
 import com.example.demo.controller.pretty.dto.TestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * @author WuYingBin
  * date: 2022/7/13
  */
+@Slf4j
 @Service(value = "prettyTestService")
 public class TestService {
 
     private OtherService otherService;
 
     public void save(TestDTO testDTO) {
-        System.out.println("保存成功");
+        log.info("保存成功: {}", testDTO);
     }
 
     public void test(Integer num) {

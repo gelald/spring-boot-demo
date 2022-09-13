@@ -1,5 +1,6 @@
 package com.example.demo.controller.pretty.advice;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
  * @author WuYingBin
  * date: 2022/7/24
  */
+@Slf4j
 @Aspect
 @Component
 public class ExceptionLogAdvice {
@@ -26,7 +28,7 @@ public class ExceptionLogAdvice {
         Object[] args = joinPoint.getArgs();
         if (args[0] instanceof Exception) {
             Exception exception = (Exception) args[0];
-            exception.printStackTrace();
+            log.error("发生异常", exception);
         }
     }
 }
