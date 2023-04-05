@@ -17,7 +17,7 @@ import javax.validation.ConstraintViolationException;
  * @author WuYingBin
  * date: 2022/7/13
  */
-@RestControllerAdvice(basePackages = "com.example.demo")
+@RestControllerAdvice(basePackages = "com.example.demo.controller.pretty")
 public class ExceptionAdvice {
 
     /**

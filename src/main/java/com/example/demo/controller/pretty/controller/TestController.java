@@ -46,7 +46,7 @@ public class TestController {
         return testDTO;
     }
 
-    @GetMapping(value = "/returnString"/*, produces = "application/json; charset=UTF-8"*/)
+    @GetMapping(value = "/returnString", produces = "application/json; charset=UTF-8")
     public String returnString() {
         log.info("success");
         return "success";
