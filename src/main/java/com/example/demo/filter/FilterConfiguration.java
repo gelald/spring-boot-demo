@@ -19,7 +19,7 @@ public class FilterConfiguration {
         filterRegistrationBean.setFilter(filterTwo);
         //设置过滤器名、过滤规则
         filterRegistrationBean.setName("filter-two");
-        filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.addUrlPatterns("/bad/*");
         return filterRegistrationBean;
     }
 
@@ -27,7 +27,7 @@ public class FilterConfiguration {
     public DelegatingFilterProxyRegistrationBean delegatingFilterProxyRegistrationBean() {
         DelegatingFilterProxyRegistrationBean delegatingFilterProxyRegistrationBean = new DelegatingFilterProxyRegistrationBean("filterThree");
         delegatingFilterProxyRegistrationBean.setName("filter-three");
-        delegatingFilterProxyRegistrationBean.addUrlPatterns("/*");
+        delegatingFilterProxyRegistrationBean.addUrlPatterns("/bad/*");
         return delegatingFilterProxyRegistrationBean;
     }
 }

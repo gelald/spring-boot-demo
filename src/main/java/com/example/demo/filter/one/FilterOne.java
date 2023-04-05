@@ -8,7 +8,7 @@ import java.io.IOException;
  * @author WuYingBin
  * date: 2023/4/3
  */
-@WebFilter(filterName = "filter-one", urlPatterns = "/*")
+@WebFilter(filterName = "filter-one", urlPatterns = "/bad/*")
 public class FilterOne implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
