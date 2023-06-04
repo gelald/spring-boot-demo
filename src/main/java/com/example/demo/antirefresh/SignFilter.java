@@ -92,6 +92,12 @@ public class SignFilter implements Filter {
         boolean accept;
         SortedMap<String, String> paramMap;
         switch (httpRequest.getMethod()) {
+            //一般来说提取参数，不应该这么分类讨论
+            //因为即使是POST请求也可以携带RequestParam参数，甚至是PathVariable参数
+            //所以这些提取参数的方式应该是组合使用的，虽然GET请求也可以放请求体，但是SpringMVC中不支持解析请求体
+            //PathVariable的参数获取是请求到达SpringMVC后才被设置的，由于Filter是Web容器的内容，所以在Filter中是无法获取的
+            //最好是在HandlerInterceptor中统一获取参数，无论是QueryString，还是body，还是PathVariable，都可以获取
+            //获取PathVariable的方式是：request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE)
             case "GET":
                 paramMap = HttpDataUtil.getUrlParams(requestWrapper);
                 accept = SignUtil.verifySign(paramMap, requestHeader);
